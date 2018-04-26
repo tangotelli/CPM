@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<qualifiedTypeNameHistroy>
+<fullyQualifiedTypeName name="java.util.Map"/>
+<fullyQualifiedTypeName name="model.types.Type"/>
+<fullyQualifiedTypeName name="java.util.List"/>
+<fullyQualifiedTypeName name="model.Skin"/>
+<fullyQualifiedTypeName name="model.types.Category"/>
+<fullyQualifiedTypeName name="model.Weapon"/>
+<fullyQualifiedTypeName name="model.Pack"/>
+</qualifiedTypeNameHistroy>

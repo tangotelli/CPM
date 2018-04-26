@@ -1,0 +1,11 @@
+package model;
+
+import java.util.List;
+
+public class ShoppingCart {
+
+	private List<Skin> skins;;
+	private List<Weapon> weapons;
+	private List<Pack> packs;
+	
+}

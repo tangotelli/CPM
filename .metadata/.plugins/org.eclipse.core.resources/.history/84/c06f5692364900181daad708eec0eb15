@@ -1,0 +1,10 @@
+package model;
+
+public class Weapons {
+
+	int id;
+	String name;
+	Category type;
+	
+	
+}

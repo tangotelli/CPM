@@ -1,0 +1,11 @@
+package model;
+
+public class Pack {
+	
+	private long idPack;
+	private long idSkin;
+	private long idWeapon;
+	private float price;
+	private String name;
+	
+}

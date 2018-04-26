@@ -1,0 +1,11 @@
+package model;
+
+public class Skin {
+	
+	long id;
+	String name;
+	int price;
+	SkinType type;
+	String image;
+	
+}
