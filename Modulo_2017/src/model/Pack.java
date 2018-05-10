@@ -1,44 +1,41 @@
 package model;
 
 public class Pack {
-	
-	private long idPack;
-	private long idSkin;
-	private long idWeapon;
+
+	private String idPack;
+	private String idSkin;
+	private String idWeapon;
 	private float price;
 	private String name;
-	
-	public Pack(long idPack, long idSkin, long idWeapon, float price,
-			String name) {
+
+	public Pack(String idPack, String idSkin, String idWeapon) {
 		super();
 		this.idPack = idPack;
 		this.idSkin = idSkin;
 		this.idWeapon = idWeapon;
-		this.price = price;
-		this.name = name;
 	}
 
-	public long getIdPack() {
+	public String getIdPack() {
 		return idPack;
 	}
 
-	public void setIdPack(long idPack) {
+	public void setIdPack(String idPack) {
 		this.idPack = idPack;
 	}
 
-	public long getIdSkin() {
+	public String getIdSkin() {
 		return idSkin;
 	}
 
-	public void setIdSkin(long idSkin) {
+	public void setIdSkin(String idSkin) {
 		this.idSkin = idSkin;
 	}
 
-	public long getIdWeapon() {
+	public String getIdWeapon() {
 		return idWeapon;
 	}
 
-	public void setIdWeapon(long idWeapon) {
+	public void setIdWeapon(String idWeapon) {
 		this.idWeapon = idWeapon;
 	}
 
@@ -62,7 +59,9 @@ public class Pack {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + (int) (idPack ^ (idPack >>> 32));
+		result = prime * result + ((idSkin == null) ? 0 : idSkin.hashCode());
+		result = prime * result
+				+ ((idWeapon == null) ? 0 : idWeapon.hashCode());
 		return result;
 	}
 
@@ -75,7 +74,15 @@ public class Pack {
 		if (getClass() != obj.getClass())
 			return false;
 		Pack other = (Pack) obj;
-		if (idPack != other.idPack)
+		if (idSkin == null) {
+			if (other.idSkin != null)
+				return false;
+		} else if (!idSkin.equals(other.idSkin))
+			return false;
+		if (idWeapon == null) {
+			if (other.idWeapon != null)
+				return false;
+		} else if (!idWeapon.equals(other.idWeapon))
 			return false;
 		return true;
 	}
@@ -85,5 +92,5 @@ public class Pack {
 		return "Pack [idPack=" + idPack + ", idSkin=" + idSkin + ", idWeapon="
 				+ idWeapon + ", price=" + price + ", name=" + name + "]";
 	}
-	
+
 }

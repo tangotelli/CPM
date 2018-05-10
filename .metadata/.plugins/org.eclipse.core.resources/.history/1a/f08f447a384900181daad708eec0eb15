@@ -1,9 +1,0 @@
-package model;
-
-public class ShoppingCart {
-
-	private int id;
-	private String username;
-	private 
-	
-}

@@ -1,34 +1,37 @@
 package model;
 
-import model.types.Category;
+import model.types.Rarity;
 
 public class Weapon {
 
-	private long id;
+	private String id;
 	private String name;
-	private Category type;
-	private int ammo;
-	private float damage;
-	private float price;
+	private Rarity rarity;
+	private int magazine, damage, envDamage;
+	private float dps, fireRate, price, reloadTime;
 	private String image;
-	
-	public Weapon(long id, String name, Category type, int ammo, float damage,
-			float price, String image) {
-		super();
+
+	public Weapon(String id, String name, Rarity rarity, int magazine,
+			int damage, int envDamage, float dps, float fireRate,
+			float reloadTime, String image) {
 		this.id = id;
 		this.name = name;
-		this.type = type;
-		this.ammo = ammo;
+		this.rarity = rarity;
+		this.magazine = magazine;
 		this.damage = damage;
-		this.price = price;
+		this.envDamage = envDamage;
+		this.dps = dps;
+		this.fireRate = fireRate;
+		this.price = dps * damage * rarity.getValue();
+		this.reloadTime = reloadTime;
 		this.image = image;
 	}
 
-	public long getId() {
+	public String getId() {
 		return id;
 	}
 
-	public void setId(long id) {
+	public void setId(String id) {
 		this.id = id;
 	}
 
@@ -40,28 +43,52 @@ public class Weapon {
 		this.name = name;
 	}
 
-	public Category getType() {
-		return type;
+	public Rarity getRarity() {
+		return rarity;
 	}
 
-	public void setType(Category type) {
-		this.type = type;
+	public void setRarity(Rarity rarity) {
+		this.rarity = rarity;
 	}
 
-	public int getAmmo() {
-		return ammo;
+	public int getMagazine() {
+		return magazine;
 	}
 
-	public void setAmmo(int ammo) {
-		this.ammo = ammo;
+	public void setMagazine(int magazine) {
+		this.magazine = magazine;
 	}
 
-	public float getDamage() {
+	public int getDamage() {
 		return damage;
 	}
 
-	public void setDamage(float damage) {
+	public void setDamage(int damage) {
 		this.damage = damage;
+	}
+
+	public int getEnvDamage() {
+		return envDamage;
+	}
+
+	public void setEnvDamage(int envDamage) {
+		this.envDamage = envDamage;
+	}
+
+	public float getDps() {
+		return dps;
+	}
+
+	public void setDps(float dps) {
+		this.dps = dps;
+	}
+
+	public float getFireRate() {
+		return fireRate;
+	}
+
+	public void setFireRate(float fireRate) {
+		this.fireRate = fireRate;
 	}
 
 	public float getPrice() {
@@ -70,6 +97,14 @@ public class Weapon {
 
 	public void setPrice(float price) {
 		this.price = price;
+	}
+
+	public float getReloadTime() {
+		return reloadTime;
+	}
+
+	public void setReloadTime(float reloadTime) {
+		this.reloadTime = reloadTime;
 	}
 
 	public String getImage() {
@@ -84,7 +119,7 @@ public class Weapon {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + (int) (id ^ (id >>> 32));
+		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		return result;
 	}
 
@@ -97,16 +132,21 @@ public class Weapon {
 		if (getClass() != obj.getClass())
 			return false;
 		Weapon other = (Weapon) obj;
-		if (id != other.id)
+		if (id == null) {
+			if (other.id != null)
+				return false;
+		} else if (!id.equals(other.id))
 			return false;
 		return true;
 	}
 
 	@Override
 	public String toString() {
-		return "Weapon [id=" + id + ", name=" + name + ", type=" + type
-				+ ", ammo=" + ammo + ", damage=" + damage + ", price=" + price
+		return "Weapon [id=" + id + ", name=" + name + ", rarity=" + rarity
+				+ ", magazine=" + magazine + ", damage=" + damage
+				+ ", envDamage=" + envDamage + ", dps=" + dps + ", fireRate="
+				+ fireRate + ", price=" + price + ", reloadTime=" + reloadTime
 				+ ", image=" + image + "]";
 	}
-	
+
 }

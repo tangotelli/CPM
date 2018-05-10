@@ -21,10 +21,9 @@ public class MainWindow extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
+					Catalogue catalogue = new Catalogue();
 					MainWindow frame = new MainWindow();
 					frame.setVisible(true);
-					Catalogue catalogue = new Catalogue();
-					catalogue.getAccomodations();
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
