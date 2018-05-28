@@ -8,12 +8,21 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import model.Catalogue;
+import model.Pack;
+import model.Skin;
+import model.Weapon;
+
 import java.awt.CardLayout;
 import java.awt.GridLayout;
 import javax.swing.JButton;
 import java.awt.FlowLayout;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
+import javax.swing.JScrollPane;
+import java.awt.event.ActionListener;
+import java.util.Map;
+import java.util.Set;
+import java.awt.event.ActionEvent;
 
 public class MainWindow extends JFrame {
 
@@ -24,7 +33,6 @@ public class MainWindow extends JFrame {
 	private JPanel pnNorth;
 	private JPanel pnEast;
 	private JPanel pnSouth;
-	private JPanel pnCenter;
 	private JButton btnSiguiente;
 	private JPanel pnHelp;
 	private JButton btnHelp;
@@ -44,6 +52,9 @@ public class MainWindow extends JFrame {
 	private JPanel pnPrice;
 	private JTextField txtPrice;
 	private JButton btnFilter;
+	private JScrollPane scrollPaneCenter;
+	
+	private static Catalogue catalogue;
 
 	/**
 	 * Launch the application.
@@ -52,7 +63,7 @@ public class MainWindow extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Catalogue catalogue = new Catalogue();
+					catalogue = new Catalogue();
 					MainWindow frame = new MainWindow();
 					frame.setVisible(true);
 				} catch (Exception e) {
@@ -83,7 +94,7 @@ public class MainWindow extends JFrame {
 			pnShop.add(getPnNorth(), BorderLayout.NORTH);
 			pnShop.add(getPnEast(), BorderLayout.EAST);
 			pnShop.add(getPnSouth(), BorderLayout.SOUTH);
-			pnShop.add(getPnCenter(), BorderLayout.CENTER);
+			pnShop.add(getScrollPaneCenter(), BorderLayout.CENTER);
 		}
 		return pnShop;
 	}
@@ -118,13 +129,6 @@ public class MainWindow extends JFrame {
 			pnSouth.add(getBtnSiguiente());
 		}
 		return pnSouth;
-	}
-	private JPanel getPnCenter() {
-		if (pnCenter == null) {
-			pnCenter = new JPanel();
-			pnCenter.setLayout(new GridLayout(1, 0, 0, 0));
-		}
-		return pnCenter;
 	}
 	private JButton getBtnSiguiente() {
 		if (btnSiguiente == null) {
@@ -176,18 +180,42 @@ public class MainWindow extends JFrame {
 	private JButton getBtnSkins() {
 		if (btnSkins == null) {
 			btnSkins = new JButton("Skins");
+			btnSkins.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent arg0) {
+					Map<String, Skin> skins = catalogue.getSkins();
+					Set<String> keys = skins.keySet();
+					for (String key : keys)
+						System.out.println(skins.get(key).toString());
+				}
+			});
 		}
 		return btnSkins;
 	}
 	private JButton getBtnWeapons() {
 		if (btnWeapons == null) {
 			btnWeapons = new JButton("Weapons");
+			btnWeapons.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent arg0) {
+					Map<String, Weapon> weapons = catalogue.getWeapons();
+					Set<String> keys = weapons.keySet();
+					for (String key : keys)
+						System.out.println(weapons.get(key).toString());
+				}
+			});
 		}
 		return btnWeapons;
 	}
 	private JButton getBtnPacks() {
 		if (btnPacks == null) {
 			btnPacks = new JButton("Packs");
+			btnPacks.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					Map<String, Pack> packs = catalogue.getPacks();
+					Set<String> keys = packs.keySet();
+					for (String key : keys)
+						System.out.println(packs.get(key).toString());
+				}
+			});
 		}
 		return btnPacks;
 	}
@@ -263,5 +291,11 @@ public class MainWindow extends JFrame {
 			btnFilter = new JButton("F");
 		}
 		return btnFilter;
+	}
+	private JScrollPane getScrollPaneCenter() {
+		if (scrollPaneCenter == null) {
+			scrollPaneCenter = new JScrollPane();
+		}
+		return scrollPaneCenter;
 	}
 }
