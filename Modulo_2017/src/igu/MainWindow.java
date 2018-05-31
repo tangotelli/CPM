@@ -295,7 +295,10 @@ public class MainWindow extends JFrame {
 	private JScrollPane getScrollPaneCenter() {
 		if (scrollPaneCenter == null) {
 			scrollPaneCenter = new JScrollPane();
+			ObjectPane figurin = new ObjectPane();
+			// COMPLETAR PA CHECKING MANUAL figurin.
 		}
+		
 		return scrollPaneCenter;
 	}
 }
